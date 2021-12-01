@@ -19,8 +19,6 @@
     text-align: center;
 }
 .livre{
-    border: solid 1px black;
-    border-radius: 20px;
     padding-bottom: 10px;
     margin: 20px;
     background-color: darkgray;
@@ -31,11 +29,34 @@
 .header{
     background-color: grey;
 }
-.divLivre{
+.border{
     border: black solid 1px;
     border-radius: 20px;
 }
 .aLivres{
     display: block;
     margin: 0 auto;
+    text-align: center;
+}
+.divImg{
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.coverImg{
+    width: 400px;
+    text-align: center;
+}
+.articleLivre{
+    justify-content: space-evenly;
+    background-color: darkgrey;
+}
+.infoLivre{
+    padding: 100px;
+    background-color: lightgray;
+}
+.synopsis{
+    text-align: center;
+    padding: 100px;
 }

@@ -4,11 +4,19 @@
 
 {% block main %}
     <body>
-        <div class="divLivre">
+    <article class="flex articleLivre border">
+        <div>
+            <img class="coverImg" src="{{ livre.img }}" alt="{{ livre.title }}">
+        </div>
+        <div class="border infoLivre">
               <h1 class="center">{{livre.title}}</h1>
               <p class="center"> {{ livre.author}}</p>
               <em class="center date">Publié le:{{ livre.publishedAt|date('d/m/y')}}</em>
-git add.
         </div>
+    </article>
+    <div class="border synopsis">
+        <h2>synopsis du livre: {{ livre.title }}</h2>
+        <p>{{ livre.resume }}</p>
+    </div>
     </body>
 {% endblock main %}
