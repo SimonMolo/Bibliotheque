@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+    {% block main %}
+    <article>
+        <h2 class="center">Liste des Livres</h2>
+                {% for livre in livres %}
+        <div class="livre">
+
+                        <h3 class="center"> {{ livre.title }}</h3>
+                        <p class="center"> {{ livre.author }}</p>
+                        <em class="center date">Publié le:{{ livre.publishedAt|date('d/m/y')}}</em>
+                        <br>
+                        <a class="aLivres" href="{{ path('livre', {"id":livre.id}) }}">Voir Plus</a>
+        </div>
+                {% endfor %}
+    </article>
+        {% endblock main %}
+
+
+
+
+
+
+
