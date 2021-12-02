@@ -3,10 +3,10 @@
     Bienvenue
 {% endblock title %}
 {% block main %}
-<h1 class="h1"> Bienvenue Sur ma bibliotheque </h1>
-<h3 class="center">Derniers ajouts:</h3>
-        <article class="flex justifyCenter">
-    {% for livre in lastBooks %}
+    <h1 class="h1"> Bienvenue Sur ma bibliotheque </h1>
+    <h3 class="center">Derniers ajouts:</h3>
+    <article class="flex justifyCenter">
+         {% for livre in lastBooks %}
             <div class="livre border">
                 <h3 class="center"> {{ livre.title }}</h3>
                 <p class="center"> {{ livre.author }}</p>
@@ -15,9 +15,9 @@
                     <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
                 </div>
             </div>
-    {% endfor %}
-        </article>
-                <a class="aLivres border block" href="{{ path('livres')}}">Voir Tout</a>
+         {% endfor %}
+    </article>
+    <a class="aLivres border block" href="{{ path('livres')}}">Voir Tout</a>
 
 
 
