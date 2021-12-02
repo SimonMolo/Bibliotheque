@@ -1,9 +1,24 @@
 {% extends 'base.html.twig' %}
-
+{% block title%}
+    Bienvenue
+{% endblock title %}
 {% block main %}
 <h1 class="h1"> Bienvenue Sur ma bibliotheque </h1>
-
-
+<h3 class="center">Derniers ajouts:</h3>
+        <article class="flex justifyCenter">
+            {# pour chaque livre dans la variable "lastBooks" j'applique ce template #}
+    {% for livre in lastBooks %}
+            <div class="livre border">
+                <h3 class="center"> {{ livre.title }}</h3>
+                <p class="center"> {{ livre.author }}</p>
+                <br>
+                <div class="divImg">
+                    <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
+                </div>
+            </div>
+    {% endfor %}
+        </article>
+                <a class="aLivres border block" href="{{ path('livres')}}">Voir Tout</a>
 
 
 

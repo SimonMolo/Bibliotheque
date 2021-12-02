@@ -1,3 +1,5 @@
+{# je prépare un squelette html de ma page qui contient mon header, mon footer, en indiquant des trous et les elements du squelette qui sont susceptible de varier au cours des pages #}
+{# grace a des "Blocs" #}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href={% block css %}"{{ asset('style.css') }}"{% endblock css %}>
-   {%block title %} <title>Document</title> {% endblock title %}
+    <title> {%block title %} Document {% endblock title %} </title>
 </head>
 <header class="Header">
     <nav class="menuHeader">

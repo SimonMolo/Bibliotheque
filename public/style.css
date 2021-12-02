@@ -37,11 +37,19 @@
     display: block;
     margin: 0 auto;
     text-align: center;
+    background-color: #DDDDDD;
+    font-family: Arial;
+    text-decoration: none;
+}
+.aLivres:hover{
+    background-color: grey;
+    color: #DDDDDD;
+    font-family: Arial;
 }
 .divImg{
     display: block;
     margin: 0 auto;
-    width: 400px;
+    width: 200px;
 }
 
 .coverImg{
@@ -59,4 +67,13 @@
 .synopsis{
     text-align: center;
     padding: 100px;
+}
+.imgList{
+    width: 200px;
+    text-align: center;
+}
+.block{
+    display: block;
+    margin: 0 auto;
+    width: 100px;
 }
