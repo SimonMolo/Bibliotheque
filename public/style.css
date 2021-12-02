@@ -12,6 +12,11 @@
 .liHeader{
     list-style: none;
 }
+.liHeader:hover {
+    background-color: lightgray;
+    color: #DDDDDD;
+    font-family: Arial;
+}
 .h1{
     text-align: center;
 }
@@ -76,4 +81,7 @@
     display: block;
     margin: 0 auto;
     width: 100px;
+}
+.menuHeader{
+    background-color: #999999;
 }
