@@ -13,11 +13,13 @@ class bibliothequeController extends AbstractController
     /**
      * @Route ("/", name="home")
      */
-    public function home()
+    public function home(BookRepository $bookRepository)
     {
-        $books = [];
-        $lastBooks = array_slice($books,-3, 3);
-        return $this->render("home.html.twig", ['home'=> $lastBooks]);
+        // je cree une variable lastBooks qui va contenir les 3 derniers livres de ma BDD
+        // pour cela j'appelle ma BDD, et lui dit de chercher dans la BDD les livres en prenant l'id des livre par ordre décroissant,
+        // et selectionner les 3 derniers uniquement et je les renvoie dans ma page home ou les livres vont etre traités.
+        $lastBooks = $bookRepository->findBy(array(),array('id'=>'DESC'),3,0);
+        return $this->render("home.html.twig", ['lastBooks'=> $lastBooks]);
     }
 // meme procédé que au dessus pour la page livres
     /**
@@ -34,16 +36,24 @@ class bibliothequeController extends AbstractController
         // pour récupérer tous les livres de la table book
         $books = $bookRepository->findAll();
 
+        // je les return dans ma page livres
+
         return $this->render("livres.html.twig",['livres'=> $books]);
     }
 
     /**
      * @Route ("/livre/{id}", name="livre")
      */
+
+    //dans cette partie, je recupere l'ID dans l'URL.
+    // je lui donne dans cette fonction les parametres (ce que je cheche dans le tableau; le nom de l'entité ou je cherche,
+    // et la nom de la variable qui sera recuperée dans le page livre
+
     public function book($id, BookRepository $bookRepository)
     {
+        //je stock le livre contenant l'id demandée dans une variable
         $book = $bookRepository->find($id);
-
+// je return ce livre dans la page livre
         return $this->render("livre.html.twig",['livre'=> $book]);
     }
 
