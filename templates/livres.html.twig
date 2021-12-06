@@ -12,11 +12,11 @@
         <div class="livre border">
             <h3 class="center"> {{ livre.title }}</h3>
             <p class="center"> {{ livre.author }}</p>
-            <em class="center date">Publié le:{{ livre.publishedAt|date('d/m/y')}}</em>
+            <em class="center date">Publié le:{{ livre.Date|date('d/m/y')}}</em>
             <br>
-            <div class="divImg">
+          {#   <div class="divImg">
                 <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
-            </div>
+            </div>#}
                         <a class="aLivres border block" href="{{ path('livre', {"id":livre.id}) }}">Voir Plus</a>
         </div>
                 {% endfor %}
