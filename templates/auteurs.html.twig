@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{# j'extend mon fichier "base" pour que symfony renvoie mon squellette préalablement configuré sur cette page Html #}
+{# j'ouvre mon bloc title pour signifier que cest a cet endroit que je vais modifier une donnée dans mon squelette #}
+{% block title%}
+    Liste des auteurs
+{% endblock title %}
+    {% block main %}
+        <article>
+            <h2 class="center">Liste des Auteurs</h2>
+            {# je cree une boucle for pour passer sur chaque element de mon tableau livres et pour qu'il complete par les elements demandés #}
+            {% for author in authors %}
+                <div class="livre border">
+                    <h3 class="center"> {{ author.firstName }}</h3>
+                    <p class="center"> {{ author.LastName }}</p>
+                    <em class="center date">Mort le :{{ author.DeathDate|date('d/m/y')}}</em>
+                    <br>
+                    {#   <div class="divImg">
+                <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
+                        </div>
+                    #}
+                    <a class="aLivres border block" href="{{ path('auteur', {"id":author.id}) }}">Voir Plus</a>
+                </div>
+            {% endfor %}
+            {# je referme ma boucle for #}
+        </article>
+    {% endblock main %}
+
+

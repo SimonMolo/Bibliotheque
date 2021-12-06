@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title%}
+    {{ author.firstName }}
+{% endblock title %}
+
+{% block main %}
+    <body>
+    <article class="flex articleLivre border">
+        {#  <div>
+            <img class="coverImg" src="{{ livre.img }}" alt="{{ livre.title }}">
+        </div>#}
+        <div class="border infoLivre">
+            <h1 class="center">{{author.firstName}}</h1>
+            <p class="center"> {{author.lastName}}</p>
+            <em class="center date">Publié le:{{ author.DeathDate|date('d/m/y')}}</em>
+        </div>
+    </article>
+    </body>
+{% endblock main %}
