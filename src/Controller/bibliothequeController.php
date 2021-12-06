@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class bibliothequeController extends abstractcontroller
 {
-    
+
     // je crée une variable private contenant mes livres pour eviter de repeter ce tableau
     private $livres;
-
+// a chaque fois qu'une page sera appelée, la methode construct va etre appelée pour instacier le tableau.
     public function __construct()
     {
         $this->livres = [
