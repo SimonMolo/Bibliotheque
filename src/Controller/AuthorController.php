@@ -6,8 +6,9 @@ use App\Entity\Author;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AuthorRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
-class authorController extends AbstractController
+class AuthorController extends AbstractController
 {
     /**
      * @Route("/auteurs", name="auteurs")
@@ -22,13 +23,21 @@ class authorController extends AbstractController
      *@Route("/auteur/create", name="auteur_create")
      */
 
-    public function createAuthor(){
+    // j'instancie la fonction createAuthor qui va me permettre d'ajouter des donées a ma BDD
+    // je lui indique grace a des setteurs quels éléments vont a quel endroit dans la table
+    public function createAuthor(entityManagerInterface $entityManager){
         //dump($author/create); die;
         $author=New author();
         $author-> setfirstName("Albert");
         $author-> setlastName("Camus");
         $author->setDeathDate(new \DateTime('1960-12-12'));
-dump($author);die;
+
+        // la methode persis sert a surveiller les setteurs,
+        // la methode flush sert a inserer les données en BDD lorsque elle est appelée.
+
+        $entityManager->persist($author);
+        $entityManager->flush();
+        return $this->render("author_create.html.twig");
     }
 
     /**

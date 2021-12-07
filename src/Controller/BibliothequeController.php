@@ -7,8 +7,9 @@ use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Book;
+use Doctrine\ORM\EntityManagerInterface;
 
-class bibliothequeController extends AbstractController
+class BibliothequeController extends AbstractController
 {
 // je nomme la route et indique ma route pour mon navigateur
     /**
@@ -48,14 +49,18 @@ class bibliothequeController extends AbstractController
     /**
      * @Route("/livre/Create", name="livreCreate")
      */
-    public function livreCreate(){
+    public function livreCreate(EntityManagerInterface $entityManager){
 
         $livre=New Book();
         $livre->setTitle("Plus fort que la haine");
         $livre->setAuthor("Tim Guénard");
         $livre->setNbPages("501");
-        $livre->setDate(New \DateTime('1999-01-01'));
-        dump($livre);die;
+        $livre->setDate(new \DateTime('1999-01-01'));
+
+        $entityManager->persist($livre);
+        $entityManager->flush();
+
+        return $this->render("book_create.html.twig");
     }
 
 
