@@ -69,10 +69,15 @@ class BibliothequeController extends AbstractController
     public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
 
     //dump("ok!!!!"); die;
+        // je stock dans une variable l'id du livre selectionné
         $livreUpdate = $bookRepository->find($id);
+        //dans cette variable, j'indique grace a un setteur le changement de nom du livre
         $livreUpdate-> setTitle('Le Fada !');
+        // la methode persist sert a préparer les entités a inserer en BDD.
         $entityManager-> persist($livreUpdate);
+        // et j'insere les données modifiées en BDD
         $entityManager->flush();
+        // j'affiche le rendu en l'envoyant sur ma page twig correspondante.
         return $this->render('livre_uploaded.html.twig');
 
     }
