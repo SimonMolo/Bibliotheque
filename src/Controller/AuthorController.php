@@ -32,13 +32,26 @@ class AuthorController extends AbstractController
         $author-> setlastName("Camus");
         $author->setDeathDate(new \DateTime('1960-12-12'));
 
-        // la methode persis sert a surveiller les setteurs,
+        // la methode persist sert a préparer les entités a inserer en BDD.
         // la methode flush sert a inserer les données en BDD lorsque elle est appelée.
 
         $entityManager->persist($author);
         $entityManager->flush();
         return $this->render("author_create.html.twig");
     }
+    /**
+     * @Route("/auteur/update/{id}", name="auteur_update")
+     */
+
+        public function AuteurUpdate($id, AuthorRepository $authorRepository, EntityManagerInterface $entityManager){
+          //dump("Ok"); die;
+            $authorUpdate = $authorRepository->find($id);
+            $authorUpdate->setFirstName('KikiLaMouche');
+            $entityManager -> persist($authorUpdate);
+            $entityManager ->flush();
+            return $this->render('auteur_uploaded.html.twig');
+
+        }
 
     /**
      * @Route("/auteur/{id}", name="auteur")

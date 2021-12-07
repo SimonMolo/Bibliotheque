@@ -62,8 +62,20 @@ class BibliothequeController extends AbstractController
 
         return $this->render("book_create.html.twig");
     }
+    /**
+     * @Route("/livre/update/{id}", name="livre_Update")
+     */
 
+    public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
 
+    //dump("ok!!!!"); die;
+        $livreUpdate = $bookRepository->find($id);
+        $livreUpdate-> setTitle('Le Fada !');
+        $entityManager-> persist($livreUpdate);
+        $entityManager->flush();
+        return $this->render('livre_uploaded.html.twig');
+
+    }
     /**
      * @Route ("/livre/{id}", name="livre")
      */
