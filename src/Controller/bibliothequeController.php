@@ -41,7 +41,10 @@ class bibliothequeController extends AbstractController
 
         return $this->render("livres.html.twig",['livres'=> $books]);
     }
-
+    // je Crée ma route pour ajouter un livre,
+    // J'instancie la class Book pour creer un nouveau livre,
+    // grace aux setteurs de "Book.php" je crée un title author nbPages et la date de parution,
+    //je renvoie (pour le moment) un dump de ma variable livre que je viens de cree contenant les infos du livre
     /**
      * @Route("/livre/Create", name="livreCreate")
      */
