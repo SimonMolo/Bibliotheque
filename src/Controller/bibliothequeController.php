@@ -6,6 +6,7 @@ use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Book;
 
 class bibliothequeController extends AbstractController
 {
@@ -40,6 +41,20 @@ class bibliothequeController extends AbstractController
 
         return $this->render("livres.html.twig",['livres'=> $books]);
     }
+
+    /**
+     * @Route("/livre/Create", name="livreCreate")
+     */
+    public function livreCreate(){
+
+        $livre=New Book();
+        $livre->setTitle("Plus fort que la haine");
+        $livre->setAuthor("Tim Guénard");
+        $livre->setNbPages("501");
+        $livre->setDate(New \DateTime('1999-01-01'));
+        dump($livre);die;
+    }
+
 
     /**
      * @Route ("/livre/{id}", name="livre")
