@@ -69,7 +69,7 @@ class BibliothequeController extends AbstractController
     public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
 
     //dump("ok!!!!"); die;
-        // je stock dans une variable l'id du livre selectionné
+        // je stock dans une variable un livre correspondant a l'id demandée dans l'URL.
         $livreUpdate = $bookRepository->find($id);
         //dans cette variable, j'indique grace a un setteur le changement de nom du livre
         $livreUpdate-> setTitle('Le Fada !');
@@ -81,6 +81,28 @@ class BibliothequeController extends AbstractController
         return $this->render('livre_uploaded.html.twig');
 
     }
+    // j'indique ma route html
+    /**
+     * @Route("/livre/delete/{id}", name="livre_delete")
+     */
+    //j'instancie ma methode qui me servira a suprimer un livre de ma BDD
+    public function livreDelete($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
+       // dump('zé bartiii !'); die;
+        // apres avoir testé ma route, je stock dans ma variable book le livre correspondant a l'id
+        //demande dans l'url grace a une wild card (instanciée en parametres de ma route)
+        $book = $bookRepository->find($id);
+        $entityManager->remove($book);
+        // je prépare mon livre a etre suprime de la BDD
+        $entityManager->flush();
+        // et je le supprime
+        return $this->render('livre_delete.html.twig');
+        // je retourne le rendu sur ma page html.
+
+    }
+
+
+
+
     /**
      * @Route ("/livre/{id}", name="livre")
      */

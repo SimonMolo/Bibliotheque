@@ -54,6 +54,16 @@ class AuthorController extends AbstractController
         }
 
     /**
+     * @Route("/auteur/delete/{id}", name="auteur_delete")
+     */
+public function auteurDelete($id, AuthorRepository $authorRepository, EntityManagerInterface $entityManager){
+    //dump('Ok'); die;
+    $auteur = $authorRepository->find($id);
+    $entityManager->remove($auteur);
+    $entityManager->flush();
+    return $this->render('auteur_delete.html.twig');
+}
+    /**
      * @Route("/auteur/{id}", name="auteur")
      */
         public function auteurs($id, authorRepository $authorRepository){
