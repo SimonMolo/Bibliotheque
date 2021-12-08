@@ -25,10 +25,6 @@ class Book
 
     private $title;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $author;
 
     /**
      * @ORM\Column(type="integer")
@@ -42,6 +38,16 @@ class Book
 
     private $Date;
 
+
+
+    private $genre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     */
+    private $Author;
+
+   
     /**
      * @return mixed
      */
@@ -74,21 +80,6 @@ class Book
         $this->title = $title;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author): void
-    {
-        $this->author = $author;
-    }
 
     /**
      * @return mixed
@@ -121,6 +112,33 @@ class Book
     {
         $this->Date = $Date;
     }
+
+
+
+    public function getGenre(): ?author
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?author $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?author
+    {
+        return $this->Author;
+    }
+
+    public function setAuthor(?author $Author): self
+    {
+        $this->Author = $Author;
+
+        return $this;
+    }
+
 
 
 }

@@ -14,6 +14,9 @@
               <p class="center"> {{ livre.author}}</p>
               <em class="center date">Publié le:{{ livre.Date|date('d/m/y')}}</em>
         </div>
+        {% if book.author %}
+            <h3>{{ book.author.firstName }} {{ book.author.lastName }}</h3>
+        {% endif %}
     </article>
     <div class="border synopsis">
         <h2>synopsis du livre: {{ livre.title }}</h2>
