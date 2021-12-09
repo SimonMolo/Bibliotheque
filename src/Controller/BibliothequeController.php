@@ -95,7 +95,7 @@ class BibliothequeController extends AbstractController
         // je prépare mon livre a etre suprime de la BDD
         $entityManager->flush();
         // et je le supprime
-        return $this->render('livre_delete.html.twig');
+        return $this->redirectToRoute("livres");
         // je retourne le rendu sur ma page html.
 
     }

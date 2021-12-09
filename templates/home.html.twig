@@ -5,7 +5,7 @@
 {% block main %}
     <h1 class="h1"> Bienvenue Sur ma bibliotheque </h1>
     <h3 class="center">Derniers ajouts:</h3>
-    <article class="flex justifyCenter">
+    <article class="flex justifyCenter articleHome">
          {% for livre in lastBooks %}
             <div class="livre border">
                 <h3 class="center"> {{ livre.title }}</h3>
