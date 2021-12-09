@@ -32,6 +32,7 @@ class AdminBibliothequeController extends AbstractController
             $entityManager->persist($book);
             // j'envoie l'entité book dans ma BDD
             $entityManager-> flush();
+            return $this->redirectToRoute('admin_livres');
         }
         // j'envoie le resultat sur ma page dédiée
         return $this->render("admin/book_create.html.twig", [
@@ -89,11 +90,13 @@ class AdminBibliothequeController extends AbstractController
                 $entityManager->persist($book);
                 // j'envoie l'entité book dans ma BDD
                 $entityManager-> flush();
+                return $this->redirectToRoute('admin_livres');
             }
-            // j'envoie le resultat sur ma page dédiée
-            return $this->render("admin/livre_uploaded.html.twig", [
-                'bookForm' => $bookForm->createView()]);
-        }
+        return $this->render("admin/livre_uploaded.html.twig", [
+            'bookForm' => $bookForm->createView()]);
+        // j'envoie le resultat sur ma page dédiée
+    }
+
     // j'indique ma route html
     /**
      * @Route("/admin/livre/delete/{id}", name="admin_livre_delete")
