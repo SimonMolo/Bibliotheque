@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\BookType;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminBibliothequeController extends AbstractController
 {
@@ -16,13 +17,23 @@ class AdminBibliothequeController extends AbstractController
      * @Route("/admin/livre/create", name="admin_livreCreate")
      */
 // j'instancie ma methode livreCreate
-    public function livreCreate(EntityManagerInterface $entityManager){
+// dans les parametre, je dit que je veut placer la requette dans une variable requette
+    public function livreCreate(Request $request,EntityManagerInterface $entityManager){
 
         // je crée un nouvel objet book
         $book = new book();
-        //en utilisant des methodes symfony j'implemente ma variable $book avec les valeurs de mes collones de sql
+        //ca cree un formulaire en créant autant d'inputs que de collones dans mon tableau sql
         $bookForm = $this-> createForm(BookType::class, $book);
-        // j'envoie le resultat sur ma page dédiée 
+        // ??
+        $bookForm-> handleRequest($request);
+        // si le formulaire est soumis et valide,
+        if ($bookForm->isSubmitted() && $bookForm->isValid()){
+            // j'envoie les données de la requette dans l'entitée book
+            $entityManager->persist($book);
+            // j'envoie l'entité book dans ma BDD
+            $entityManager-> flush();
+        }
+        // j'envoie le resultat sur ma page dédiée
         return $this->render("admin/book_create.html.twig", [
             'bookForm' => $bookForm->createView()]);
     }
