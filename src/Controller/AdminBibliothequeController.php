@@ -24,7 +24,7 @@ class AdminBibliothequeController extends AbstractController
         $book = new book();
         //ca cree un formulaire en créant autant d'inputs que de collones dans mon tableau sql
         $bookForm = $this-> createForm(BookType::class, $book);
-        // ??
+        // je recupere les valeurs de tous les inputs pour verifier si le formulaire est rempli et envoyé.
         $bookForm-> handleRequest($request);
         // si le formulaire est soumis et valide,
         if ($bookForm->isSubmitted() && $bookForm->isValid()){
@@ -76,21 +76,24 @@ class AdminBibliothequeController extends AbstractController
      * @Route("/admin/livre/update/{id}", name="admin_livre_Update")
      */
 
-    public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
+    public function LivreUpdate($id, Request $request,BookRepository $bookRepository, EntityManagerInterface $entityManager){
 
-    //dump("ok!!!!"); die;
-        // je stock dans une variable un livre correspondant a l'id demandée dans l'URL.
-        $livreUpdate = $bookRepository->find($id);
-        //dans cette variable, j'indique grace a un setteur le changement de nom du livre
-        $livreUpdate-> setTitle('Le Fada !');
-        // la methode persist sert a préparer les entités a inserer en BDD.
-        $entityManager-> persist($livreUpdate);
-        // et j'insere les données modifiées en BDD
-        $entityManager->flush();
-        // j'affiche le rendu en l'envoyant sur ma page twig correspondante.
-        return $this->render('admin/livre_uploaded.html.twig');
-
-    }
+            $book = $bookRepository->find($id);
+            //ca cree un formulaire en créant autant d'inputs que de collones dans mon tableau sql
+            $bookForm = $this-> createForm(BookType::class, $book);
+            // je recupere les valeurs de tous les inputs pour verifier si le formulaire est rempli et envoyé.
+            $bookForm-> handleRequest($request);
+            // si le formulaire est soumis et valide,
+            if ($bookForm->isSubmitted() && $bookForm->isValid()){
+                // j'envoie les données de la requette dans l'entitée book
+                $entityManager->persist($book);
+                // j'envoie l'entité book dans ma BDD
+                $entityManager-> flush();
+            }
+            // j'envoie le resultat sur ma page dédiée
+            return $this->render("admin/livre_uploaded.html.twig", [
+                'bookForm' => $bookForm->createView()]);
+        }
     // j'indique ma route html
     /**
      * @Route("/admin/livre/delete/{id}", name="admin_livre_delete")
