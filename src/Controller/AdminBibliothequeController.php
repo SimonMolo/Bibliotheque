@@ -15,10 +15,14 @@ class AdminBibliothequeController extends AbstractController
     /**
      * @Route("/admin/livre/create", name="admin_livreCreate")
      */
-
+// j'instancie ma methode livreCreate
     public function livreCreate(EntityManagerInterface $entityManager){
+
+        // je crée un nouvel objet book
         $book = new book();
+        //en utilisant des methodes symfony j'implemente ma variable $book avec les valeurs de mes collones de sql
         $bookForm = $this-> createForm(BookType::class, $book);
+        // j'envoie le resultat sur ma page dédiée 
         return $this->render("admin/book_create.html.twig", [
             'bookForm' => $bookForm->createView()]);
     }
