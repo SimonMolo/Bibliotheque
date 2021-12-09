@@ -8,9 +8,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Book;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\BookType;
 
-class BibliothequeController extends AbstractController
+class AdminBibliothequeController extends AbstractController
 {
+    /**
+     * @Route("/admin/livre/create", name="admin_livreCreate")
+     */
+
+    public function livreCreate(EntityManagerInterface $entityManager){
+        $book = new book();
+        $bookForm = $this-> createForm(BookType::class, $book);
+        return $this->render("admin/book_create.html.twig", [
+            'bookForm' => $bookForm->createView()]);
+    }
 // je nomme la route et indique ma route pour mon navigateur
     /**
      * @Route ("/", name="home")
@@ -25,7 +36,7 @@ class BibliothequeController extends AbstractController
     }
 // meme procédé que au dessus pour la page livres
     /**
-     * @Route ("/admin/livres", name="livres")
+     * @Route ("/admin/livres", name="admin_livres")
      */
     // pour instancier la classe BookRepository
     // j'utilise l'autowire de Symfony
@@ -40,30 +51,14 @@ class BibliothequeController extends AbstractController
 
         // je les return dans ma page livres
 
-        return $this->render("livres.html.twig",['livres'=> $books]);
+        return $this->render("admin/livres.html.twig",['livres'=> $books]);
     }
     // je Crée ma route pour ajouter un livre,
     // J'instancie la class Book pour creer un nouveau livre,
     // grace aux setteurs de "Book.php" je crée un title author nbPages et la date de parution,
     //je renvoie (pour le moment) un dump de ma variable livre que je viens de cree contenant les infos du livre
     /**
-     * @Route("/admin/livre/Create", name="livreCreate")
-     */
-    public function livreCreate(EntityManagerInterface $entityManager){
-
-        $livre=New Book();
-        $livre->setTitle("Plus fort que la haine");
-        $livre->setAuthor("Tim Guénard");
-        $livre->setNbPages("501");
-        $livre->setDate(new \DateTime('1999-01-01'));
-
-        $entityManager->persist($livre);
-        $entityManager->flush();
-
-        return $this->render("book_create.html.twig");
-    }
-    /**
-     * @Route("/admin/livre/update/{id}", name="livre_Update")
+     * @Route("/admin/livre/update/{id}", name="admin_livre_Update")
      */
 
     public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
@@ -78,12 +73,12 @@ class BibliothequeController extends AbstractController
         // et j'insere les données modifiées en BDD
         $entityManager->flush();
         // j'affiche le rendu en l'envoyant sur ma page twig correspondante.
-        return $this->render('livre_uploaded.html.twig');
+        return $this->render('admin/livre_uploaded.html.twig');
 
     }
     // j'indique ma route html
     /**
-     * @Route("/admin/livre/delete/{id}", name="livre_delete")
+     * @Route("/admin/livre/delete/{id}", name="admin_livre_delete")
      */
     //j'instancie ma methode qui me servira a suprimer un livre de ma BDD
     public function livreDelete($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
@@ -95,16 +90,14 @@ class BibliothequeController extends AbstractController
         // je prépare mon livre a etre suprime de la BDD
         $entityManager->flush();
         // et je le supprime
-        return $this->redirectToRoute("livres");
+        return $this->redirectToRoute("admin_livres");
         // je retourne le rendu sur ma page html.
 
     }
 
 
-
-
     /**
-     * @Route ("/admin/livre/{id}", name="livre")
+     * @Route ("/admin/livre/{id}", name="admin_livre")
      */
 
     //dans cette partie, je recupere l'ID dans l'URL.
@@ -116,7 +109,7 @@ class BibliothequeController extends AbstractController
         //je stock le livre contenant l'id demandée dans une variable
         $book = $bookRepository->find($id);
 // je return ce livre dans la page livre
-        return $this->render("livre.html.twig",['livre'=> $book]);
+        return $this->render("admin/livre.html.twig",['livre'=> $book]);
     }
 
 }
