@@ -25,7 +25,7 @@ class BibliothequeController extends AbstractController
     }
 // meme procédé que au dessus pour la page livres
     /**
-     * @Route ("/livres", name="livres")
+     * @Route ("/admin/livres", name="livres")
      */
     // pour instancier la classe BookRepository
     // j'utilise l'autowire de Symfony
@@ -47,7 +47,7 @@ class BibliothequeController extends AbstractController
     // grace aux setteurs de "Book.php" je crée un title author nbPages et la date de parution,
     //je renvoie (pour le moment) un dump de ma variable livre que je viens de cree contenant les infos du livre
     /**
-     * @Route("/livre/Create", name="livreCreate")
+     * @Route("/admin/livre/Create", name="livreCreate")
      */
     public function livreCreate(EntityManagerInterface $entityManager){
 
@@ -63,7 +63,7 @@ class BibliothequeController extends AbstractController
         return $this->render("book_create.html.twig");
     }
     /**
-     * @Route("/livre/update/{id}", name="livre_Update")
+     * @Route("/admin/livre/update/{id}", name="livre_Update")
      */
 
     public function LivreUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
@@ -83,7 +83,7 @@ class BibliothequeController extends AbstractController
     }
     // j'indique ma route html
     /**
-     * @Route("/livre/delete/{id}", name="livre_delete")
+     * @Route("/admin/livre/delete/{id}", name="livre_delete")
      */
     //j'instancie ma methode qui me servira a suprimer un livre de ma BDD
     public function livreDelete($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
@@ -104,7 +104,7 @@ class BibliothequeController extends AbstractController
 
 
     /**
-     * @Route ("/livre/{id}", name="livre")
+     * @Route ("/admin/livre/{id}", name="livre")
      */
 
     //dans cette partie, je recupere l'ID dans l'URL.

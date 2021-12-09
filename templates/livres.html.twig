@@ -14,13 +14,13 @@
             {% if livre.author %}
               <p class="center"> {{ livre.author.firstName }} {{ livre.author.lastName }}</p>
             {% endif %}
-            <em class="center date">Publié le:{{ livre.Date|date('d/m/y')}}</em>
+            <em class="center date">Publié le:{{ livre.Date|date('d/m/Y')}}</em>
             <br>
           {#   <div class="divImg">
                 <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
             </div>#}
             <a class="aLivres border block" href="{{ path('livre', {"id":livre.id}) }}">Voir Plus</a>
-            <a class="aLivres border block" href="{{ path('livre_delete', {"id":livre.id}) }}">Supprimer</a>
+            <a class="aLivres border block aDelete" href="{{ path('livre_delete', {"id":livre.id}) }}">Supprimer</a>
         </div>
                 {% endfor %}
         {# je referme ma boucle for #}
