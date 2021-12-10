@@ -5,6 +5,70 @@ Auteur ajouté
 {% endblock title %}
 {% block main %}
     <div class="form flex">
-         {{ form(authorForm) }}
+        {{ form_start(authorForm) }}
+        <div class="form-floating mb-3" id="floatingInput">
+            <div class="form-control">
+                {{ form_label(authorForm, 'Prénom',{
+                    'label_attr':{
+                        'class': 'testLabelClass'}
+                }) }}
+            </div>
+            <div class="form-control">
+                {{ form_widget(authorForm.firstName,{
+                    'attr': {'class':'testClass'}
+                }) }}
+            </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput">
+            <div class="form-control">
+                {{ form_label(authorForm, 'Nom',{
+                    'label_attr':{
+                        'class': 'testLabelClass'}
+                }) }}
+            </div>
+            <div class="form-control">
+                {{ form_widget(authorForm.LastName,{
+                    'attr': {'class':'testClass'}
+
+                }) }}
+            </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput">
+            <div class="form-control">
+                {{ form_label(authorForm, 'Date de mort',{
+                    'label_attr':{
+                        'class': 'testLabelClass'}
+                }) }}
+            </div>
+            <div class="form-control">
+                {{ form_widget(authorForm.DeathDate,{
+                    'attr': {'class':'testClass'}
+
+                }) }}
+            </div>
+        </div>
+        <div class="form-floating mb-3" id="floatingInput" >
+            <div class="form-control">
+                {{ form_label(authorForm, 'Valider',{
+                    'label_attr':{
+                        'class': 'testLabelClass'}
+                }) }}
+            </div>
+            <div class="form-control">
+                {{ form_widget(authorForm.valider,{
+                    'attr': {'class':'testClass'}
+
+                }) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+        {{ form_end(authorForm) }}
+
     </div>
 {% endblock main %}
