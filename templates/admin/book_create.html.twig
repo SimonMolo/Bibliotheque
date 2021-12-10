@@ -3,7 +3,86 @@
     Livre ajouté
 {% endblock title %}
 {% block main %}
+
     <div class="form flex">
-        {{ form(bookForm) }}
+
+        {{ form_start(bookForm) }}
+        <div class="form-floating mb-3" id="floatingInput">
+             <div class="form-control">
+            {{ form_label(bookForm, 'Titre',{
+            'label_attr':{
+                    'class': 'testLabelClass'}
+            }) }}
+             </div>
+              <div class="form-control">
+            {{ form_widget(bookForm.title,{
+                'attr': {'class':'testClass'}
+            }) }}
+              </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput">
+             <div class="form-control">
+            {{ form_label(bookForm, 'Nombre de pages',{
+                'label_attr':{
+                    'class': 'testLabelClass'}
+            }) }}
+             </div>
+            <div class="form-control">
+            {{ form_widget(bookForm.nbPages,{
+                'attr': {'class':'testClass'}
+
+            }) }}
+            </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput">
+            <div class="form-control">
+            {{ form_label(bookForm, 'Date de publication',{
+                'label_attr':{
+                    'class': 'testLabelClass'}
+            }) }}
+            </div>
+            <div class="form-control">
+            {{ form_widget(bookForm.Date,{
+                'attr': {'class':'testClass'}
+
+            }) }}
+            </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput">
+            <div class="form-control">
+            {{ form_label(bookForm, 'Auteur',{
+                'label_attr':{
+                    'class': 'testLabelClass'}
+            }) }}
+              </div>
+            <div class="form-control">
+            {{ form_widget(bookForm.Author,{
+                'attr': {'class':'testClass'}
+
+            }) }}
+            </div>
+        </div>
+
+        <div class="form-floating mb-3" id="floatingInput" >
+            <div class="form-control">
+            {{ form_label(bookForm, 'Valider',{
+                'label_attr':{
+                    'class': 'testLabelClass'}
+            }) }}
+            </div>
+            <div class="form-control">
+            {{ form_widget(bookForm.valider,{
+                'attr': {'class':'testClass'}
+
+            }) }}
+            </div>
+        </div>
+
+
+        {{ form_end(bookForm) }}
+
     </div>
 {% endblock main %}
