@@ -25,7 +25,7 @@ class BookType extends AbstractType
                 // grace au choice label, j'insere dans le menu déroulant que je viens de générer
                 // ce que je veut placer dedans.
                 'choice_label'=>function($author){
-                // grace a la Conquetenation, je demande a symfony de m'inserer le FirstName ainsi que le LastName.
+                // grace a la Conquetenation, je demande a symfony de m'inserer le FirstName ainsi que le LastName.²
                 return $author->getFirstName() .' '. $author->getLastName();
                 }
             ])
