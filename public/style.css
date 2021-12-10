@@ -41,6 +41,9 @@
     background-color: darkgray;
     width: 25%;
 }
+.articleLivre{
+    justify-content: center;
+}
 .date{
     display: block;
 }
@@ -71,17 +74,20 @@
     width: 200px;
 }
 
-.coverImg{
+.coverImg {
     width: 400px;
     text-align: center;
-}
-.articleLivre{
-    justify-content: space-evenly;
-    background-color: darkgrey;
 }
 .infoLivre{
     padding: 100px;
     background-color: lightgray;
+}
+.form{
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 100px;
+    justify-content: center;
 }
 .synopsis{
     text-align: center;

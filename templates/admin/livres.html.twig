@@ -7,7 +7,7 @@
     {% block main %}
         <h2 class="center">Liste des Livres</h2>
         <a class ="aLivres border block"href="{{ path('admin_livreCreate')}}">Ajouter un Livre</a>
-        <article class="flex wrap">
+        <article class="flex wrap articleLivre">
         {# je cree une boucle for pour passer sur chaque element de mon tableau livres et pour qu'il complete par les elements demandés #}
                 {% for livre in livres %}
         <div class="livre border">
@@ -21,9 +21,12 @@
                 <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
             </div>#}
             <a class="aLivres border block" href="{{ path('admin_livre', {"id":livre.id}) }}">Voir Plus</a>
-            <a class="aLivres border block" href="{{ path('admin_livre_Update', {"id": livre.id}) }}">Modifier le livre</a>
-            <a class="aLivres border block " href="{{ path('admin_livre_delete', {"id":livre.id}) }}">Supprimer le livre</a>
-        </div>
+            <div class="articleLinks flex">
+                    <a class="aLivres border block" href="{{ path('admin_livre_Update', {"id": livre.id}) }}">Modifier le livre</a>
+                    <a class="aLivres border block " href="{{ path('admin_livre_delete', {"id":livre.id}) }}">Supprimer le livre</a>
+                </div>
+            </div>
+
                 {% endfor %}
         {# je referme ma boucle for #}
     </article>

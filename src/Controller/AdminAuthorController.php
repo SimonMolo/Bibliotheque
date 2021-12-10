@@ -25,13 +25,12 @@ class AdminAuthorController extends AbstractController
      *@Route("/admin/auteur/create", name="admin_auteur_create")
      */
 
-    // j'instancie la fonction createAuthor qui va me permettre d'ajouter des donées a ma BDD
-    // je lui indique grace a des setteurs quels éléments vont a quel endroit dans la table
+    // je crée une methode createAuthor qui va me permettre d'ajouter des donées a ma BDD
     public function createAuthor(Request $request,entityManagerInterface $entityManager){
 
 
             $author = new Author();
-            //ca cree un formulaire en créant autant d'inputs que de collones dans mon tableau sql
+            //ca cree un formulaire en créant autant d'inputs que de collones dans mon tableau sql (en utilisant l'entité auteurs)
             $authorForm = $this-> createForm(AuthorType::class, $author);
             // je recupere les valeurs de tous les inputs pour verifier si le formulaire est rempli et envoyé.
             $authorForm-> handleRequest($request);

@@ -7,7 +7,7 @@
     {% block main %}
         <h2 class="center">Liste des Auteurs</h2>
         <a class="aLivres border block" href="{{ path('admin_auteur_create') }}">Ajouter un auteur</a>
-        <article class="flex wrap">
+        <article class="flex wrap center articleLivre">
             {# je cree une boucle for pour passer sur chaque element de mon tableau livres et pour qu'il complete par les elements demandés #}
             {% for author in authors %}
                 <div class="livre border">
@@ -19,9 +19,11 @@
                 <img class="imgList" src="{{livre.img}}" alt="{{ livre.title }}">
                         </div>
                     #}
-                    <a class="aLivres border block" href="{{ path('admin_auteur', {"id":author.id}) }}">Voir Plus</a>
-                    <a class="aLivres border block" href="{{ path('admin_auteur_update', {"id":author.id}) }}">Modifier l'auteur</a>
-                    <a class="aLivres border block" href="{{ path('admin_auteur_delete',{"id":author.id}) }}"> Supprimer l'auteur</a>
+                        <a class="aLivres border block" href="{{ path('admin_auteur', {"id":author.id}) }}">Voir Plus</a>
+                    <div class="flex">
+                        <a class="aLivres border block" href="{{ path('admin_auteur_update', {"id":author.id}) }}">Modifier l'auteur</a>
+                        <a class="aLivres border block" href="{{ path('admin_auteur_delete',{"id":author.id}) }}"> Supprimer l'auteur</a>
+                    </div>
                 </div>
             {% endfor %}
             {# je referme ma boucle for #}
