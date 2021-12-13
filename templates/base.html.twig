@@ -24,6 +24,11 @@
                 <a class="aHeader" href="{{ path('admin_auteurs') }}">Auteurs</a>
             </li>
         </ul>
+        <form action="{{ path('admin_search_books') }}">
+            <input type="text" name="query">
+            <input type="submit">
+        </form>
+
     </nav>
 </header>
 <body class="body">

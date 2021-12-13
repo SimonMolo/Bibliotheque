@@ -133,4 +133,18 @@ class AdminBibliothequeController extends AbstractController
         return $this->render("admin/livre.html.twig",['livre'=> $book]);
     }
 
+    /**
+     * @Route("/admin/search", name="admin_search_books")
+     */
+        public function searchBooks(BookRepository $bookReository, Request $request){
+            // j'indique que $word est le resultat de la recherche de l'utilisateur dans l'URL
+            $word = $request->query->get('query');
+            //je stock le resultat de mon query dans la variable $books
+            $books=$bookReository->searchByTitle($word);
+            //je renvoie le resultat sur la page twig.
+            return $this->render('admin/books_search.html.twig', [
+                'books' => $books
+
+            ]);
+    }
 }

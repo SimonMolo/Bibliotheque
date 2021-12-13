@@ -18,7 +18,20 @@ class BookRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Book::class);
     }
-
+        // Je crée une methode searchByTitle
+    public function searchByTitle($word){
+        //je cree une variable $queryBuilder en utilisant la fonction symfony createQueryBuilder
+        $queryBuilder = $this->createQueryBuilder('book');
+        // je lui indique la route dans laquelle aller effectuer la recherche
+        $query=$queryBuilder->select('book')
+            // je lui passe les parametre SQL
+            ->where('book.title LIKE :word')
+            // j'utilise les % conquaténé au mot pour enlever de la recherches tous les elements sensibles de la recherche
+                //afin de securiser ma BDD
+            ->setParameter('word', '%'.$word.'%')
+            ->getQuery();
+        return $query->getResult();
+    }
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */
