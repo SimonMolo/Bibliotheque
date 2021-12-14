@@ -1,11 +1,12 @@
-{% extends "admin/adminBase.html.twig" %}
+{% extends 'base.html.twig' %}
 {% block title %}
-     resultat de la recherche
+    resultat de la recherche
 {% endblock title %}
 {% block main %}
     {% for book in books %}
         <div>
             <h2>{{ book.title }}</h2>
+            <a class="aLivres border block" href="{{ path('book', {"id":book.id}) }}">Voir Plus</a>
         </div>
     {% endfor %}
 {% endblock main %}

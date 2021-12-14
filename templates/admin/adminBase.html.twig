@@ -15,16 +15,16 @@
     <nav class="menuHeader border">
         <ul class="flex ulHeader">
             <li class="liHeader border">
-                <a class="aHeader" href="{{ path('home') }}">Home</a>
+                <a class="aHeader" href="{{ path('admin_home') }}">Home</a>
             </li>
             <li class="liHeader border">
-                <a class="aHeader" href="{{ path('books') }}">Livres</a>
+                <a class="aHeader" href="{{ path('admin_livres') }}">Livres</a>
             </li>
             <li class="liHeader border">
-                <a class="aHeader" href="{{ path('authors') }}">Auteurs</a>
+                <a class="aHeader" href="{{ path('admin_auteurs') }}">Auteurs</a>
             </li>
             <li class="liHeader border">
-                <a class="aHeader" href="{{ path('login') }}">Connexion</a>
+                <a class="aHeader" href="{{ path('app_logout') }}">Déconexion</a>
             </li>
         </ul>
         <form action="{{ path('search_books') }}">
@@ -35,8 +35,8 @@
     </nav>
 </header>
 <body class="body">
-    {% block main %}
-    {% endblock main %}
+{% block main %}
+{% endblock main %}
 </body>
 </html>
 <footer>

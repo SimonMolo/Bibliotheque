@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title%}
+    {{ livre.title }}
+{% endblock title %}
+
+{% block main %}
+    <body>
+    <article class="flex articleLivre border">
+        <div class="border infoLivre">
+            <h1 class="center">{{livre.title}}</h1>
+            <p class="center"> {{ livre.author}}</p>
+            <em class="center date">Publié le:{{ livre.Date|date('d/m/y')}}</em>
+        </div>
+
+    </article>
+    <div class="border synopsis">
+        <h2>synopsis du livre: {{ livre.title }}</h2>
+        <p>{{ livre.nbPages }}</p>
+    </div>
+    <a class="border aLivres block" href="{{ path('books') }}">Retour aux livres</a>
+    </body>
+{% endblock main %}

@@ -22,12 +22,11 @@ class BookRepository extends ServiceEntityRepository
     public function searchByTitle($word){
         //je cree une variable $queryBuilder en utilisant la fonction symfony createQueryBuilder
         $queryBuilder = $this->createQueryBuilder('book');
-        // je lui indique la route dans laquelle aller effectuer la recherche
+        // je fais une requette select dans ma table book
         $query=$queryBuilder->select('book')
             // je lui passe les parametre SQL
             ->where('book.title LIKE :word')
-            // j'utilise les % conquaténé au mot pour enlever de la recherches tous les elements sensibles de la recherche
-                //afin de securiser ma BDD
+            // permet de preciser quil peut y avoir des caracteres avant et des caractere apres.
             ->setParameter('word', '%'.$word.'%')
             ->getQuery();
         return $query->getResult();

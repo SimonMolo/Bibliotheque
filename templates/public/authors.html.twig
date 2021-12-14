@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title%}
+    Liste des auteurs
+{% endblock title %}
+    {% block main %}
+        <h2 class="center">Liste des Auteurs</h2>
+        <article class="flex wrap center articleLivre">
+            {# je cree une boucle for pour passer sur chaque element de mon tableau livres et pour qu'il complete par les elements demandés #}
+            {% for author in authors %}
+                <div class="livre border">
+                    <h3 class="center"> {{ author.firstName }}</h3>
+                    <p class="center"> {{ author.LastName }}</p>
+                    <em class="center date">Mort le :{{ author.DeathDate|date('d/m/Y')}}</em>
+                    <br>
+                    <a class="aLivres border block" href="{{ path('author', {"id":author.id}) }}">Voir Plus</a>
+                </div>
+            {% endfor %}
+            {# je referme ma boucle for #}
+        </article>
+    {% endblock main %}
